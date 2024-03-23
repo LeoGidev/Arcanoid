@@ -1,5 +1,6 @@
 import pygame
 import random
+
 # Inicialización de Pygame
 pygame.init()
 
@@ -76,7 +77,6 @@ class Block(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-
 # Función principal del juego
 def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -103,29 +103,44 @@ def main():
     score = 0
     font = pygame.font.Font(None, 36)
 
+    game_over_font = pygame.font.Font(None, 50)
+    game_over_text = game_over_font.render("Game Over", True, WHITE)
+    restart_text = font.render("Press R to Restart", True, WHITE)
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r and not ball.alive():
+                    main()  # Reiniciar el juego
 
-        all_sprites.update()
+        if len(blocks) == 0:
+            ball.kill()  # Elimina la pelota para detener el juego
+            restart = True
 
-        # Colisiones con los bloques
-        block_hit_list = pygame.sprite.spritecollide(ball, blocks, True)
-        for block in block_hit_list:
-            score += 10
-            ball.dy = -ball.dy
+        if len(blocks) > 0:
+            all_sprites.update()
 
-        # Colisión con la paleta
-        if pygame.sprite.collide_rect(ball, paddle):
-            ball.dy = -ball.dy
+            # Colisiones con los bloques
+            block_hit_list = pygame.sprite.spritecollide(ball, blocks, True)
+            for block in block_hit_list:
+                score += 10
+                ball.dy = -ball.dy
 
-        screen.fill((0, 0, 0))
-        all_sprites.draw(screen)
+            # Colisión con la paleta
+            if pygame.sprite.collide_rect(ball, paddle):
+                ball.dy = -ball.dy
 
-        # Mostrar puntaje
-        text = font.render("Score: " + str(score), True, WHITE)
-        screen.blit(text, [10, 10])
+            screen.fill((0, 0, 0))
+            all_sprites.draw(screen)
+
+            # Mostrar puntaje
+            score_text = font.render("Score: " + str(score), True, WHITE)
+            screen.blit(score_text, [SCREEN_WIDTH - 150, 10])
+        else:
+            screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
+            screen.blit(restart_text, (SCREEN_WIDTH // 2 - 120, SCREEN_HEIGHT // 2 + 50))
 
         pygame.display.flip()
         clock.tick(60)
