@@ -75,3 +75,62 @@ class Block(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+
+# Función principal del juego
+def main():
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Arkanoid")
+
+    all_sprites = pygame.sprite.Group()
+    blocks = pygame.sprite.Group()
+
+    paddle = Paddle()
+    ball = Ball()
+
+    all_sprites.add(paddle)
+    all_sprites.add(ball)
+
+    for row in range(BLOCK_ROWS):
+        for column in range(BLOCK_COLUMNS):
+            block = Block(BLOCK_WIDTH * column + 5, BLOCK_HEIGHT * row + 50)
+            blocks.add(block)
+            all_sprites.add(block)
+
+    clock = pygame.time.Clock()
+    running = True
+
+    score = 0
+    font = pygame.font.Font(None, 36)
+
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        all_sprites.update()
+
+        # Colisiones con los bloques
+        block_hit_list = pygame.sprite.spritecollide(ball, blocks, True)
+        for block in block_hit_list:
+            score += 10
+            ball.dy = -ball.dy
+
+        # Colisión con la paleta
+        if pygame.sprite.collide_rect(ball, paddle):
+            ball.dy = -ball.dy
+
+        screen.fill((0, 0, 0))
+        all_sprites.draw(screen)
+
+        # Mostrar puntaje
+        text = font.render("Score: " + str(score), True, WHITE)
+        screen.blit(text, [10, 10])
+
+        pygame.display.flip()
+        clock.tick(60)
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
