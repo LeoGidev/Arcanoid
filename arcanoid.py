@@ -40,3 +40,28 @@ class Paddle(pygame.sprite.Sprite):
         self.rect.x = pos[0]
         if self.rect.x > SCREEN_WIDTH - PADDLE_WIDTH:
             self.rect.x = SCREEN_WIDTH - PADDLE_WIDTH
+
+# Clase para la pelota
+class Ball(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface([10, 10])
+        self.image.fill(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.x = SCREEN_WIDTH // 2
+        self.rect.y = SCREEN_HEIGHT // 2
+        self.dx = BALL_SPEED * random.choice([-1, 1])
+        self.dy = BALL_SPEED * random.choice([-1, 1])
+
+    def update(self):
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+
+        if self.rect.left <= 0 or self.rect.right >= SCREEN_WIDTH:
+            self.dx = -self.dx
+
+        if self.rect.top <= 0:
+            self.dy = -self.dy
+
+        if self.rect.bottom >= SCREEN_HEIGHT:
+            self.kill()
