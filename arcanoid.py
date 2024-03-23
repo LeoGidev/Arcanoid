@@ -134,7 +134,7 @@ def main():
             score_text = font.render("Score: " + str(score), True, WHITE)
             screen.blit(score_text, [SCREEN_WIDTH - 150, 10])
         else:
-            restart_text = font.render("Press R to Restart", True, WHITE)
+            restart_text = font.render("Press R to Restart", True, WHITE)  # Definición aquí
             screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
             screen.blit(restart_text, (SCREEN_WIDTH // 2 - 120, SCREEN_HEIGHT // 2 + 50))
 
