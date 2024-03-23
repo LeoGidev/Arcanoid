@@ -105,6 +105,7 @@ def main():
 
     game_over_font = pygame.font.Font(None, 50)
     game_over_text = game_over_font.render("Game Over", True, WHITE)  # Definición aquí
+    restart_text = font.render("Press R to Restart", True, WHITE)  # Definición aquí
 
     while running:
         for event in pygame.event.get():
@@ -134,7 +135,6 @@ def main():
             score_text = font.render("Score: " + str(score), True, WHITE)
             screen.blit(score_text, [SCREEN_WIDTH - 150, 10])
         else:
-            restart_text = font.render("Press R to Restart", True, WHITE)  # Definición aquí
             screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
             screen.blit(restart_text, (SCREEN_WIDTH // 2 - 120, SCREEN_HEIGHT // 2 + 50))
 
@@ -150,4 +150,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
