@@ -24,3 +24,19 @@ BLOCK_WIDTH = 60
 BLOCK_HEIGHT = 30
 BLOCK_ROWS = 5
 BLOCK_COLUMNS = 10
+
+# Clase para la paleta
+class Paddle(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface([PADDLE_WIDTH, PADDLE_HEIGHT])
+        self.image.fill(RED)
+        self.rect = self.image.get_rect()
+        self.rect.x = (SCREEN_WIDTH - PADDLE_WIDTH) // 2
+        self.rect.y = SCREEN_HEIGHT - PADDLE_HEIGHT - 10
+
+    def update(self):
+        pos = pygame.mouse.get_pos()
+        self.rect.x = pos[0]
+        if self.rect.x > SCREEN_WIDTH - PADDLE_WIDTH:
+            self.rect.x = SCREEN_WIDTH - PADDLE_WIDTH
