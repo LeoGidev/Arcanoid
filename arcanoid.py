@@ -12,7 +12,7 @@ SCREEN_HEIGHT = 600
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
-Color = {(255,0,255),(0,0,255),(200,200,0)}
+Color = [(255, 0, 255), (0, 0, 255), (200, 200, 0)]  # Lista de colores
 
 # Velocidad de la pelota
 BALL_SPEED = 4
@@ -73,7 +73,7 @@ class Block(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.image = pygame.Surface([BLOCK_WIDTH, BLOCK_HEIGHT])
-        self.image.fill(BLUE)
+        self.image.fill(random.choice(Color))  # Seleccionar un color aleatorio de la lista
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -151,6 +151,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
