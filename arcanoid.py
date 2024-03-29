@@ -105,7 +105,7 @@ def main():
 
     game_over_font = pygame.font.Font(None, 50)
     game_over_text = game_over_font.render("Game Over", True, WHITE)  # Definición aquí
-    restart_text = font.render("Press R to Restart", True, WHITE)  # Definición aquí
+    restart_text = font.render("Presione R para reinciar", True, WHITE)  # Definición aquí
 
     while running:
         for event in pygame.event.get():
