@@ -14,7 +14,7 @@ BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 
 # Velocidad de la pelota
-BALL_SPEED = 5
+BALL_SPEED = 4
 
 # Dimensiones de la paleta
 PADDLE_WIDTH = 100
