@@ -12,7 +12,7 @@ SCREEN_HEIGHT = 600
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
-Color = [(255, 0, 255), (0, 0, 255), (200, 200, 0)]  # Lista de colores
+Color = [(255, 0, 255), (0, 0, 255), (200, 200, 0), (100,100,100), (20,20,20), (200, 20, 100)]  # Lista de colores
 
 # Velocidad de la pelota
 BALL_SPEED = 4
