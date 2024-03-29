@@ -24,7 +24,7 @@ PADDLE_HEIGHT = 20
 BLOCK_WIDTH = 60
 BLOCK_HEIGHT = 30
 BLOCK_ROWS = 5
-BLOCK_COLUMNS = 10
+BLOCK_COLUMNS = 12
 
 # Clase para la paleta
 class Paddle(pygame.sprite.Sprite):
