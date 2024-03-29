@@ -9,7 +9,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 # Colores
-WHITE = (255, 255, 255)
+
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 GRIS = (155, 155, 155)
@@ -106,8 +106,8 @@ def main():
     font = pygame.font.Font(None, 36)
 
     game_over_font = pygame.font.Font(None, 50)
-    game_over_text = game_over_font.render("Game Over", True, WHITE)  # Definición aquí
-    restart_text = font.render("Presione R para reinciar", True, WHITE)  # Definición aquí
+    game_over_text = game_over_font.render("Game Over", True, GRIS)  # Definición aquí
+    restart_text = font.render("Presione R para reinciar", True, GRIS)  # Definición aquí
 
     while running:
         for event in pygame.event.get():
@@ -134,7 +134,7 @@ def main():
             all_sprites.draw(screen)
 
             # Mostrar puntaje
-            score_text = font.render("Score: " + str(score), True, WHITE)
+            score_text = font.render("Score: " + str(score), True, GRIS)
             screen.blit(score_text, [SCREEN_WIDTH - 150, 10])
         else:
             screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2 - 50))
