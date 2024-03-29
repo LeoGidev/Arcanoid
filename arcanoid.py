@@ -12,7 +12,8 @@ SCREEN_HEIGHT = 600
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
-Color = [(255, 0, 255), (0, 0, 255), (200, 200, 0), (100,100,100), (20,20,20), (200, 20, 100), (240, 100, 231), (4, 250, 34), (255, 148, 4)]  # Lista de colores
+GRIS = (155, 155, 155)
+Color = [(255, 0, 255), (0, 0, 255), (200, 200, 0), (100,100,100), (20,200,20), (200, 20, 100), (240, 100, 231), (4, 250, 34), (255, 148, 4)]  # Lista de colores
 
 # Velocidad de la pelota
 BALL_SPEED = 4
@@ -48,7 +49,7 @@ class Ball(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = pygame.Surface([10, 10])
-        self.image.fill(WHITE)
+        self.image.fill(GRIS)
         self.rect = self.image.get_rect()
         self.rect.x = SCREEN_WIDTH // 2
         self.rect.y = SCREEN_HEIGHT // 2
@@ -129,7 +130,7 @@ def main():
             if pygame.sprite.collide_rect(ball, paddle):
                 ball.dy = -ball.dy
 
-            screen.fill((155, 155, 155))
+            screen.fill((255, 255, 255))
             all_sprites.draw(screen)
 
             # Mostrar puntaje
